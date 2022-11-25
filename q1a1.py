@@ -1,5 +1,8 @@
-dia_inicio, horario_inicio = '5 08:12:23'.split()
-dia_fim, horario_fim = '9 06:13:23'.split()
+dia_inicio, horario_inicio = '1 2:2:2'.split()
+dia_fim, horario_fim = '2 2:2:2'.split()
+
+#dia_inicio, horario_inicio = input().split()
+#dia_fim, horario_fim = input().split()
 
 dia_inicio, dia_fim = int(dia_inicio), int(dia_fim)
 
@@ -7,24 +10,30 @@ hora_inicio, minutos_inicio, segundos_inicio = map(int, horario_inicio.split(':'
 
 hora_fim, minutos_fim, segundos_fim = map(int, horario_fim.split(':'))
 
-segundos = 60
-minutos = segundos * 60
-hora = minutos * 60
-dia = hora * 24
+minuto = 60
+hora = minuto * 60
 
-if hora_inicio > 0:
-  dia_fim -= 1
-total_dias = dia_fim - dia_inicio
-print(total_dias)
+hora_inicio_em_segundos = segundos_inicio + (minutos_inicio * minuto) + (hora_inicio * hora)
 
-if minutos_inicio > 0:
-  hora_inicio -= 1
-  
-total_minutos = (dia - (hora_inicio * minutos))
-total_horas = total_minutos // hora
-total_hora = total_minutos / hora
-total_horas = total_minutos // hora
+hora_fim_em_segundos = segundos_fim + (minutos_fim * minuto) + (hora_fim * hora)
 
-print(total_minutos)
-print(total_horas)
-  
+total_em_segundos = hora_fim_em_segundos - hora_inicio_em_segundos
+
+hora_segundos = total_em_segundos % (24 * hora)
+total_hora = hora_segundos // hora
+minuto_segundos = total_em_segundos % hora
+total_minuto = minuto_segundos // minuto
+total_segundo = minuto_segundos % 60
+
+
+dias_diferenca = (dia_fim - dia_inicio) - 1
+
+total_dias = dias_diferenca + 1 if dias_diferenca < 0 or total_hora == 0 else dias_diferenca
+
+if dia_inicio <= dia_fim:
+  print(f"{str(total_dias)} dia(s)")
+  print(f"{str(total_hora)} hora(s)")
+  print(f"{str(total_minuto)} minuto(s)")
+  print(f"{str(total_segundo)} segundo(s)")
+else:
+  print("Data inválida!")
