@@ -30,7 +30,7 @@ dias_diferenca = (dia_fim - dia_inicio) - 1
 
 total_dias = dias_diferenca + 1 if dias_diferenca < 0 or total_hora == 0 else dias_diferenca
 
-if dia_inicio <= dia_fim:
+if dia_inicio <= dia_fim and (total_em_segundos > 0 or total_dias > 0):
   print(f"{str(total_dias)} dia(s)")
   print(f"{str(total_hora)} hora(s)")
   print(f"{str(total_minuto)} minuto(s)")
