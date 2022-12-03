@@ -37,17 +37,16 @@ def print_peso(peso):
 def anilha_verify(anilha_retirada):
   if anilha_retirada == anilha:
     print_peso(anilha_retirada)
-    total_peso += anilha_retirada
-    retirou = True
+    return True
   else:
     print_peso(anilha_retirada)
-    total_peso += anilha_retirada
+    return False
 
-
-for item in range(stack_of_anilhas.size):
-  if not anilha_retirada:
+for item in range(stack_of_anilhas.size()):
+  if not retirou:
     anilha_retirada = stack_of_anilhas.pop()
-    anilha_verify(anilha_retirada)
+    retirou = anilha_verify(anilha_retirada)
+    total_peso += anilha_retirada
   else:
     break
 
