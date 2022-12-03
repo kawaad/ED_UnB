@@ -26,22 +26,28 @@ while value != 0:
   value = int(input())
 
 anilha = int(input())
-anilha_retirada = False
+retirou = False
 total_peso = 0
-
-
-def print_pop_sum(item):
-  print(f"Peso retirado: {stack_of_anilhas.pop(item)}")
-  total_peso += item
 
 initial_stack_size = stack_of_anilhas.size()
 
-for item in stack_of_anilhas.items:
+def print_peso(peso):
+  print(f"Peso retirado: {peso}")
+
+def anilha_verify(anilha_retirada):
+  if anilha_retirada == anilha:
+    print_peso(anilha_retirada)
+    total_peso += anilha_retirada
+    retirou = True
+  else:
+    print_peso(anilha_retirada)
+    total_peso += anilha_retirada
+
+
+for item in range(stack_of_anilhas.size):
   if not anilha_retirada:
-    if item == anilha:
-      print_pop_sum(item)
-    else:
-      print_pop_sum(item)
+    anilha_retirada = stack_of_anilhas.pop()
+    anilha_verify(anilha_retirada)
   else:
     break
 
