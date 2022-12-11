@@ -20,26 +20,31 @@ class Deque:
     def size(self):
         return len(self.items)
 
-
 N = int(input())
-NL = map(int, input().split())
+NL = list(map(int, input().split()))
 K = int(input())
 
 deque = Deque()
+deque_window = Deque()
 deque_max = Deque()
 
-def append_max():
-  deque_max.append(max(deque.items))
+for item in range(N):
+  deque.addFront(NL[item])
 
-for i in range(N):
-  if deque.isEmpty:
+def append_max():
+  deque_max.addFront(max(deque_window.items))
+
+for item in range(deque.size()):
+  if deque_window.isEmpty():
     for k in range(K):
-      deque.addFront(NL[k])
+      deque_window.addFront(deque.items[k])
     append_max()
   else:
-    deque.removeRear()
-    deque.addFront(NL[i+2])
-    append_max()
+    if item <= N - K:
+      new_deque = []
+      deque_window.removeRear()
+      deque_window.addFront(deque.items[item+K-1])
+      append_max()
 
+print(*deque_max.items, sep='  ')
 
-print(deque_max)
