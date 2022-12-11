@@ -28,22 +28,18 @@ deque = Deque()
 deque_window = Deque()
 deque_max = Deque()
 
-for item in range(N):
-  deque.addFront(NL[item])
-
 def append_max():
   deque_max.addFront(max(deque_window.items))
 
-for item in range(deque.size()):
+for item in range(N):
   if deque_window.isEmpty():
     for k in range(K):
-      deque_window.addFront(deque.items[k])
+      deque_window.addFront(NL[k])
     append_max()
   else:
     if item <= N - K:
-      new_deque = []
       deque_window.removeRear()
-      deque_window.addFront(deque.items[item+K-1])
+      deque_window.addFront(NL[item+K-1])
       append_max()
 
 print(*deque_max.items, sep='  ')
