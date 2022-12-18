@@ -12,5 +12,8 @@ def fibonacci(n):
 f = fibonacci(entrada)
 print(f'fibonacci({entrada}) = {f}.')
 
-for item, valor in dict.items():
+if not dict.get(0):
+  print(f'0 chamada(s) a fibonacci(0).')
+
+for item, valor in sorted(dict.items()):
   print(f'{valor} chamada(s) a fibonacci({item}).')
