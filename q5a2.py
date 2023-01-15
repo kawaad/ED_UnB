@@ -7,23 +7,26 @@ bora_rala = "Bora ralar: {}"
 cases = {}
 
 for testes in range(n):
-  conteudo = list(input())
-  u_died = False
+  conteudo = input()
   ralar = False
-  resto = conteudo
-  fora = []
+  fora = False
   for turno in range(3):
     cont_passado = list(input())
-    resto = list(set(resto) - set(cont_passado))
-    fora = list(set(cont_passado) - set(conteudo))
-    if fora:
-      u_died = True
-    
+    for letra in cont_passado:
+      if letra not in conteudo:
+          fora = True
+      else:
+        list_conteudo = list(conteudo)
+        del(list_conteudo[conteudo.find(letra)])
+        conteudo = ''.join(list_conteudo)
+  list_conteudo = list(conteudo)
 
-  if u_died:
+  conteudo = ''.join(set(conteudo))
+    
+  if fora:
     cases.update({testes: you_died})
-  elif resto:
-    cases.update({testes: bora_rala.format(''.join(resto).upper())})
+  elif conteudo:
+    cases.update({testes: bora_rala.format(''.join(sorted(conteudo)).upper())})
   else:
     cases.update({testes: in_the_box})
 
