@@ -1,4 +1,4 @@
-def altura_ordem(alturas):
+def selectionSort(alturas):
    for fillslot in range(len(alturas)-1,0,-1):
        positionOfMax=0
        for location in range(1,fillslot+1):
@@ -10,7 +10,12 @@ def altura_ordem(alturas):
        alturas[positionOfMax] = temp
 
 n = int(input())
+
+altura_ideal = 180
+peso_ideal = 75
+
 dict = {}
+
 alturas = []
 pesos = []
 for pretendentes in range(n):
@@ -23,8 +28,7 @@ for pretendentes in range(n):
   pesos.append(distancia_peso)
   dict.update({f'{sobrenome}, {nome}': [sobrenome, distancia_altura, distancia_peso]})
 
-altura_ordem(alturas)
-
+selectionSort(alturas)
 
 for altura in alturas:
   for item in dict:
