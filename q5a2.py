@@ -1,37 +1,18 @@
-def selectionSort(alturas):
-   for fillslot in range(len(alturas)-1,0,-1):
-       positionOfMax=0
-       for location in range(1,fillslot+1):
-           if alturas[location]>alturas[positionOfMax]:
-               positionOfMax = location
-
-       temp = alturas[fillslot]
-       alturas[fillslot] = alturas[positionOfMax]
-       alturas[positionOfMax] = temp
+import operator
 
 n = int(input())
+lista = []
 
-altura_ideal = 180
-peso_ideal = 75
-
-dict = {}
-
-alturas = []
-pesos = []
 for pretendentes in range(n):
   nome, sobrenome, altura, peso = input().split()
   altura = int(altura)
   peso = int(peso)
   distancia_altura = altura - 180 if altura >= 180 else 180 - altura
   distancia_peso = peso - 75 if peso >= 75 else 75 - peso
-  alturas.append(distancia_altura)
-  pesos.append(distancia_peso)
-  dict.update({f'{sobrenome}, {nome}': [sobrenome, distancia_altura, distancia_peso]})
+  
+  lista.append([nome, sobrenome, distancia_altura, distancia_peso])
 
-selectionSort(alturas)
+lista = sorted(lista, key = operator.itemgetter(2, 3))
 
-for altura in alturas:
-  for item in dict:
-    dicio = dict[item]
-    if dicio[1] == altura:
-      print(item)
+for item in lista:
+  print(f'{item[1]}, {item[0]}')
