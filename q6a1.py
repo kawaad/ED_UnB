@@ -53,6 +53,7 @@ arvore = None
 
 valor = input()
 
+prints = []
 while valor != 'quack':
 
   if valor != 'in' and valor != 'pre' and valor != 'pos':
@@ -63,22 +64,31 @@ while valor != 'quack':
   elif valor == 'in':
     if arvore:
       arvore.in_print()
-      print(' '.join(lista))
+      prints.append(' '.join(lista))
       lista = []
     else:
-      print()
+      prints.append('')
   elif valor == 'pre':
     if arvore:
       arvore.pre_print()
-      print(' '.join(lista))
+      prints.append(' '.join(lista))
       lista = []
     else:
-      print()
+      prints.append('')
   elif valor == 'pos':
     if arvore:
       arvore.pos_print()
-      print(' '.join(lista))
+      prints.append(' '.join(lista))
       lista = []
     else:
-      print()
+      prints.append('')
   valor = input()
+
+sim = False
+for _print in prints:
+  if _print:
+    sim = True
+
+if sim:
+  for _print in prints:
+    print(_print)
