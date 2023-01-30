@@ -23,28 +23,28 @@ class ArvoreBinaria():
             self.dir.inserir(valor)
 
   def in_print(self):
-    if self.dado:
+    if self.dado is not None:
       if self.esq:
         self.esq.in_print()
-      lista.append(self.dado)
+      lista.append(str(self.dado))
       if self.dir:
         self.dir.in_print()
 
   def pre_print(self):
-    if self.dado:
-      lista.append(self.dado)
+    if self.dado is not None:
+      lista.append(str(self.dado))
       if self.esq:
         self.esq.pre_print()
       if self.dir:
         self.dir.pre_print()
 
   def pos_print(self):
-    if self.dado:
+    if self.dado is not None:
       if self.esq:
         self.esq.pos_print()
       if self.dir:
         self.dir.pos_print()
-      lista.append(self.dado)
+      lista.append(str(self.dado))
 
 
 #lista = [4,2,1,3,6,7,5,'in','pre','pos','quack']
@@ -57,6 +57,7 @@ prints = []
 while valor != 'quack':
 
   if valor != 'in' and valor != 'pre' and valor != 'pos':
+    valor = int(valor)
     if arvore is None:
       arvore = ArvoreBinaria(valor)
     else:
